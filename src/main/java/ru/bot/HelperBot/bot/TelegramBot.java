@@ -1,8 +1,8 @@
 package ru.bot.HelperBot.bot;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -10,15 +10,23 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import ru.bot.HelperBot.bot.handlers.dispatcher.PersonFormDispatcher;
 
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
+
+    private final PersonFormDispatcher personFormDispatcher;
 
     @Value("${telegram.bot.username}")
     private String botUsername;
 
     @Value("${telegram.bot.token}")
     private String botToken;
+
+    @Autowired
+    public TelegramBot(PersonFormDispatcher personFormDispatcher) {
+        this.personFormDispatcher = personFormDispatcher;
+    }
 
     @PostConstruct
     public void init(){
@@ -44,29 +52,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()){
-            String text = update.getMessage().getText();
-            Long chatId = update.getMessage().getChatId();
-
-            if("/start".equalsIgnoreCase(text.trim())){
-                sendText(chatId, "Hi! I am test bot. Use /ping for checking");
-                return;
-            }
-
-            if ("/ping".equalsIgnoreCase(text.trim())){
-                sendText(chatId, "Pong!");
-                return;
-            }
-
-            sendText(chatId, "You was write: " + text);
+            personFormDispatcher.dispatch(update, this);
         }
     }
 
-    private void sendText(Long chatId, String text){
-        SendMessage msg = new SendMessage();
-        msg.setChatId(chatId.toString());
-        msg.setText(text);
+    public void sendMessage(Long chatId, String text){
         try{
-            execute(msg);
+            execute(new SendMessage(chatId.toString(), text));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,5 @@
 package ru.bot.HelperBot.repository;
 
-public interface VacancyRepository {
+
+public interface UserRepository {
 }

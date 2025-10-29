@@ -12,6 +12,10 @@ spring:
     connect-retries: 3
     placeholders:
       flyway.ignoreUnknownDatabase: true
+  data:
+    redis:
+      host: redis
+      port: 6379
 
 telegram:
   bot:

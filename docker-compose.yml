@@ -16,6 +16,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -30,13 +32,32 @@ services:
       - ./docker/db-data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 10s
+      interval: 5s
+      timeout: 5s
       retries: 5
     networks:
       - app-network
+
+  redis:
+    image: redis:latest
+    container_name: bot_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli", "raw", "PING"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
 volumes:
   postgres_data:
+  redis_data:
 networks:
   app-network:
     driver: bridge
