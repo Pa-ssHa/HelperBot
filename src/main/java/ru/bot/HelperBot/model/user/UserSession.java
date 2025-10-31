@@ -8,7 +8,8 @@ public class UserSession {
     private Long chat_id;
     private UserState userState;
     private int age;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String city;
     private LocalDate date;
     private String nameVacancy;
@@ -30,12 +31,12 @@ public class UserSession {
         this.userState = userState;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public LocalDate getDate() {
@@ -78,9 +79,18 @@ public class UserSession {
         this.city = city;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
-        return "Имя: " + name +
+        return "Имя: " + firstName +
+                ", Фамилия: " + lastName +
                 ", Возраст: " + age +
                 ", Город: " + city +
                 ", Название вакансии: " + nameVacancy;

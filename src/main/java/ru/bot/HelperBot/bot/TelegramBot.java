@@ -11,11 +11,13 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.bot.HelperBot.bot.handlers.dispatcher.PersonFormDispatcher;
+import ru.bot.HelperBot.service.BotMessageService;
 
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final PersonFormDispatcher personFormDispatcher;
+    private final BotMessageService botMessageService;
 
     @Value("${telegram.bot.username}")
     private String botUsername;
@@ -24,8 +26,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String botToken;
 
     @Autowired
-    public TelegramBot(PersonFormDispatcher personFormDispatcher) {
+    public TelegramBot(PersonFormDispatcher personFormDispatcher, BotMessageService botMessageService) {
         this.personFormDispatcher = personFormDispatcher;
+        this.botMessageService = botMessageService;
     }
 
     @PostConstruct
@@ -52,6 +55,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()){
+            if(update.getMessage().getText().equalsIgnoreCase("/start")){
+                sendMessage(update.getMessage().getChatId(), "Привет ," + update.getMessage().getFrom().getFirstName() +
+                        ", это бот для поиска вакансий, новостей и здесь есть возможность проверить твое резюме. Для заполнения личной информации вызови: /my_info");
+                botMessageService.sendMainMenu(update.getMessage().getChatId(), this);
+                return;
+            }
             personFormDispatcher.dispatch(update, this);
         }
     }

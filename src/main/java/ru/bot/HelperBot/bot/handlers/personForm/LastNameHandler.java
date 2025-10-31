@@ -7,19 +7,18 @@ import ru.bot.HelperBot.model.user.UserSession;
 import ru.bot.HelperBot.model.user.UserState;
 
 @Component
-public class StartHandler implements PersonStateHandler{
-
+public class LastNameHandler implements PersonStateHandler{
     @Override
     public boolean canHandler(Update update, UserSession userSession) {
-        return update.hasMessage() &&
-                update.getMessage().hasText() &&
-                update.getMessage().getText().trim().equalsIgnoreCase("/my_info") &&
-                userSession.getUserState().equals(UserState.START);
+        return userSession.getUserState().equals(UserState.WAITING_LASTNAME) &&
+                update.hasMessage() &&
+                update.getMessage().hasText();
     }
 
     @Override
     public void handle(Update update, UserSession userSession, TelegramBot telegramBot) {
-        userSession.setUserState(UserState.WAITING_FIRSTNAME);
-        telegramBot.sendMessage(update.getMessage().getChatId(), "Введите имя");
+        userSession.setUserState(UserState.WAITING_AGE);
+        userSession.setLastName(update.getMessage().getText());
+        telegramBot.sendMessage(update.getMessage().getChatId(), "Фамилия успешно сохранена. Введите ваш возраст: ");
     }
 }
