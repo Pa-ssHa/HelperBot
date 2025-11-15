@@ -3,6 +3,7 @@ package ru.bot.HelperBot.bot.handlers.callbackHandlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import ru.bot.HelperBot.bot.TelegramBot;
 import ru.bot.HelperBot.service.UserVacancyService;
 
 @Service
@@ -22,7 +23,7 @@ public class CallbackTypeVacancyHandler implements CallbackVacancyHandler{
     }
 
     @Override
-    public void callback(CallbackQuery callbackQuery) {
+    public void callback(CallbackQuery callbackQuery, TelegramBot telegramBot) {
         if (callbackQuery.getData().startsWith("favorite_")) {
             userVacancyService.makeFavoriteVacancy(callbackQuery.getMessage().getChatId(),
                     Long.valueOf(callbackQuery.getData().substring(9)));
@@ -30,5 +31,8 @@ public class CallbackTypeVacancyHandler implements CallbackVacancyHandler{
         }
         userVacancyService.makeHiddenVacancy(callbackQuery.getMessage().getChatId(),
                 Long.valueOf(callbackQuery.getData().substring(7)));
+
+        telegramBot.deleteMessage(callbackQuery.getMessage().getChatId(), callbackQuery.getMessage().getMessageId());
+
     }
 }

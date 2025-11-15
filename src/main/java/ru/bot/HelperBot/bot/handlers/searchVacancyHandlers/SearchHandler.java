@@ -30,7 +30,7 @@ public class SearchHandler implements SearchVacancyHandler {
 
     @Override
     public void handler(Update update, TelegramBot telegramBot) {
-        var vacancies = vacancyService.findVacancy(update.getMessage().getChatId(), 5);
+        var vacancies = vacancyService.findVacancy(update.getMessage().getChatId());
         if (vacancies.isEmpty()) {
             telegramBot.sendMessage(update.getMessage().getChatId(), "По вашей профессии ничего не найдено");
             return;

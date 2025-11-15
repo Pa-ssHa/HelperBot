@@ -3,6 +3,7 @@ package ru.bot.HelperBot.bot.handlers.dispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import ru.bot.HelperBot.bot.TelegramBot;
 import ru.bot.HelperBot.bot.handlers.callbackHandlers.CallbackVacancyHandler;
 
 import java.util.List;
@@ -17,10 +18,10 @@ public class CallbackVacancyDispatcher {
         this.handlers = handlers;
     }
 
-    public boolean dispatcher(CallbackQuery callbackQuery) {
+    public boolean dispatcher(CallbackQuery callbackQuery, TelegramBot telegramBot) {
         for (CallbackVacancyHandler handler : handlers) {
             if (handler.canCallback(callbackQuery)) {
-                handler.callback(callbackQuery);
+                handler.callback(callbackQuery, telegramBot);
                 return true;
             }
         }

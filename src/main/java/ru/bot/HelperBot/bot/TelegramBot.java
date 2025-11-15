@@ -8,6 +8,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -65,7 +66,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         if (update.hasCallbackQuery()) {
             sendAcknowledgmentCallback(update.getCallbackQuery().getId());
-            if (callbackVacancyDispatcher.dispatcher(update.getCallbackQuery())) {
+            if (callbackVacancyDispatcher.dispatcher(update.getCallbackQuery(), this)) {
                 return;
             }
         }
@@ -99,6 +100,17 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void sendMessage(Long chatId, String text) {
         try {
             execute(new SendMessage(chatId.toString(), text));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteMessage(Long chatId, Integer messageId) {
+        DeleteMessage deleteMessage = new DeleteMessage();
+        deleteMessage.setChatId(chatId);
+        deleteMessage.setMessageId(messageId);
+        try{
+            execute(deleteMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

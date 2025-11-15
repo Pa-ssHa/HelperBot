@@ -20,9 +20,6 @@ public class UserService {
     }
 
     public void save(UserSession userSession) {
-        if(userRepository.findByChatId(userSession.getChat_id())!=null) {
-            userRepository.delete(userRepository.findByChatId(userSession.getChat_id()));
-        }
         userRepository.save(userMapper.toUsers(userSession));
     }
 

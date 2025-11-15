@@ -21,11 +21,13 @@ public class MessageVacancyService {
                 "💼 *%s*\n" +
                         "🏢 %s\n" +
                         "📍 %s\n" +
-                        "💰 %s",
+                        "💰 %s\n" +
+                " %s",
                 vacancy.getNameVacancy(),
                 vacancy.getCompany(),
                 vacancy.getCity(),
-                vacancy.getSalary()
+                vacancy.getSalary(),
+                "https://hh.ru/vacancy/" + vacancy.getId_vacancy()
         );
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();

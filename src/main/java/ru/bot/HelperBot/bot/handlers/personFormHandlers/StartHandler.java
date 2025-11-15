@@ -14,7 +14,8 @@ public class StartHandler implements PersonStateHandler{
         return update.hasMessage() &&
                 update.getMessage().hasText() &&
                 update.getMessage().getText().trim().equalsIgnoreCase("/my_info") &&
-                userSession.getUserState().equals(UserState.START);
+                (userSession.getUserState().equals(UserState.START)
+                        || userSession.getUserState().equals(UserState.FINISH));
     }
 
     @Override

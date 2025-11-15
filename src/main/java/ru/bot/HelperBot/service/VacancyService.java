@@ -31,33 +31,52 @@ public class VacancyService {
         this.userService = userService;
     }
 
-    public List<Vacancy> findVacancy(Long chatId, int countVacancy) {
+    public List<Vacancy> findVacancy(Long chatId) {
 
         List<Vacancy> vacancies = new ArrayList<>();
 
-        String response = restClient.get()
-                .uri(URI, builder -> builder
-                        .queryParam("per_page", countVacancy)
-                        .queryParam("text", userService.findByChatId(chatId).getProfession())
-                        .build())
-                .retrieve()
-                .body(String.class);
+//        int numberPage = 0;
+        final int[] numberPage = {0};
 
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            JsonNode jsonNode = mapper.readTree(response);
-            for (int i = 0; i < countVacancy; i++) {
-                Vacancy vacancy = new Vacancy();
-                var item = jsonNode.get("items").get(i);
-                if(item==null){
-                    return vacancies;
+        int countVacancy = 5;
+        int countAddedVacancies = 0;
+        boolean flagCompete = false;
+
+        List<Long> savedVacancies = userVacancyService.findVacancyIdForUser(chatId);
+
+        while (true) {
+
+            try {
+                String response = restClient.get()
+                        .uri(URI, builder -> builder
+                                .queryParam("per_page", countVacancy)
+                                .queryParam("page", numberPage[0])
+                                .queryParam("text", userService.findByChatId(chatId).getProfession())
+                                .build())
+                        .retrieve()
+                        .body(String.class);
+
+                ObjectMapper mapper = new ObjectMapper();
+
+                JsonNode jsonNode = mapper.readTree(response);
+                int sizeResponse = jsonNode.get("items").size();
+
+                if (sizeResponse == 0 ) {
+                    break;
                 }
-                vacancy.setId_vacancy(Integer.parseInt(item.get("id").asText()));
-                vacancy.setNameVacancy(item.get("name").asText());
-                vacancy.setSalary(item.get("salary_range").asText());
-                vacancy.setCity(item.get("area").get("name").asText());
-                vacancy.setCompany(item.get("employer").get("name").asText());
-                vacancies.add(vacancy);
+
+                for (int i = 0; i < sizeResponse; i++) {
+
+                    Vacancy vacancy = new Vacancy();
+                    var item = jsonNode.get("items").get(i);
+
+                    if (!savedVacancies.contains(Long.parseLong(item.get("id").asText()))) {
+                        vacancy.setId_vacancy(Integer.parseInt(item.get("id").asText()));
+                        vacancy.setNameVacancy(item.get("name").asText());
+                        vacancy.setSalary(item.get("salary_range").asText());
+                        vacancy.setCity(item.get("area").get("name").asText());
+                        vacancy.setCompany(item.get("employer").get("name").asText());
+                        vacancies.add(vacancy);
 
 //                snippet - требования
 //                work_format - рабочий формат :[{id:..., name:...},{id, name}...]
@@ -66,16 +85,29 @@ public class VacancyService {
 //                employer - компания {id:..., name:..., url...}
 
 
-                vacancyRepository.save(vacancy);
+                        vacancyRepository.save(vacancy);
+                        countAddedVacancies++;
+
+
+                    }
+                }
+                if (sizeResponse < countVacancy){
+                    flagCompete = true;
+                }
+
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
             }
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            if (countAddedVacancies == countVacancy || flagCompete) {
+                break;
+            } else {
+                numberPage[0]++;
+            }
+
         }
 
         userVacancyService.save(vacancies, chatId);
-
-//        Лучше вернуть HashMap - id вакансии:описание
 
         return vacancies;
     }

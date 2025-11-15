@@ -8,6 +8,7 @@ import ru.bot.HelperBot.model.user.UserVacancy;
 import ru.bot.HelperBot.model.user.UserVacancyId;
 import ru.bot.HelperBot.repository.UserVacancyRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,5 +53,14 @@ public class UserVacancyService {
             vacancy.setIs_hidden(true);
             userVacancyRepository.save(vacancy);
         });
+    }
+
+    public List<Long> findVacancyIdForUser(Long chatId){
+        List<Long> result = new ArrayList<>();
+        List<UserVacancy> userVacancyList = userVacancyRepository.findByUser_id(chatId);
+        for(UserVacancy userVacancy : userVacancyList){
+            result.add(userVacancy.getVacancy_id());
+        }
+        return result;
     }
 }
