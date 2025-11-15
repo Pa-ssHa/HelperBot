@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.bot.handlers.personForm;
+package ru.bot.HelperBot.bot.handlers.personFormHandlers;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;

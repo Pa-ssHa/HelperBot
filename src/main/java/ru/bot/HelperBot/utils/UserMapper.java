@@ -1,8 +1,5 @@
 package ru.bot.HelperBot.utils;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 import ru.bot.HelperBot.model.user.UserSession;
 import ru.bot.HelperBot.model.user.Users;
@@ -16,7 +13,7 @@ public class UserMapper {
         users.setLastName(userSession.getLastName());
         users.setAge(userSession.getAge());
         users.setCity(userSession.getCity());
-        users.setChat_id(userSession.getChat_id());
+        users.setChatId(userSession.getChat_id());
         users.setProfession(userSession.getNameVacancy());
         return users;
     }

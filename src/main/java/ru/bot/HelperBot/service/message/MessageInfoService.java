@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.service;
+package ru.bot.HelperBot.service.message;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,7 +10,7 @@ import ru.bot.HelperBot.bot.TelegramBot;
 import java.util.List;
 
 @Service
-public class BotMessageService {
+public class MessageInfoService {
 
     public void sendMainMenu(Long chatId, TelegramBot bot){
         ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup();

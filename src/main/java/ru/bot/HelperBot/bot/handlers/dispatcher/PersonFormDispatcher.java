@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.bot.HelperBot.bot.TelegramBot;
-import ru.bot.HelperBot.bot.handlers.personForm.PersonStateHandler;
+import ru.bot.HelperBot.bot.handlers.personFormHandlers.PersonStateHandler;
 import ru.bot.HelperBot.model.user.UserSession;
 import ru.bot.HelperBot.service.RedisSessionService;
-import ru.bot.HelperBot.service.UserService;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class PersonFormDispatcher {
         this.redisSessionService = redisSessionService;
     }
 
-    public void dispatch(Update update, TelegramBot telegramBot){
+    public boolean dispatch(Update update, TelegramBot telegramBot){
         Long chatId = update.getMessage().getChatId();
         UserSession userSession = redisSessionService.getOrCreate(chatId);
 
@@ -31,9 +30,10 @@ public class PersonFormDispatcher {
             if(personHandler.canHandler(update, userSession)){
                 personHandler.handle(update, userSession, telegramBot);
                 redisSessionService.save(chatId, userSession);
-                return;
+                return true;
             }
         }
+        return false;
 
     }
 }

@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.bot.handlers.personForm;
+package ru.bot.HelperBot.bot.handlers.personFormHandlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

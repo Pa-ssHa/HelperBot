@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.bot.handlers.personForm;
+package ru.bot.HelperBot.bot.handlers.personFormHandlers;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -7,18 +7,18 @@ import ru.bot.HelperBot.model.user.UserSession;
 import ru.bot.HelperBot.model.user.UserState;
 
 @Component
-public class VacancyHandler implements PersonStateHandler{
+public class LastNameHandler implements PersonStateHandler{
     @Override
     public boolean canHandler(Update update, UserSession userSession) {
-        return userSession.getUserState().equals(UserState.WAITING_VACANCY) &&
+        return userSession.getUserState().equals(UserState.WAITING_LASTNAME) &&
                 update.hasMessage() &&
                 update.getMessage().hasText();
     }
 
     @Override
     public void handle(Update update, UserSession userSession, TelegramBot telegramBot) {
-        userSession.setUserState(UserState.WAITING_CITY);
-        userSession.setNameVacancy(update.getMessage().getText());
-        telegramBot.sendMessage(update.getMessage().getChatId(), "Вакансия сохранена. Введите город для работы.");
+        userSession.setUserState(UserState.WAITING_AGE);
+        userSession.setLastName(update.getMessage().getText());
+        telegramBot.sendMessage(update.getMessage().getChatId(), "Фамилия успешно сохранена. Введите ваш возраст: ");
     }
 }

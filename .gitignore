@@ -36,3 +36,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# temp file
+src/main/java/ru/bot/HelperBot/utils/temp.java
+
+

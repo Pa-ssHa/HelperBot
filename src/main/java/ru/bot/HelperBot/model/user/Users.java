@@ -2,36 +2,25 @@ package ru.bot.HelperBot.model.user;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "users", schema = "helperbot")
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long chat_id;
+    @Column(name = "chat_id")
+    private Long chatId;
     private String lastName;
     private String firstName;
     private int age;
     private String city;
     private String profession;
 
-    public Long getId() {
-        return id;
+    public Long getChatId() {
+        return chatId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getChat_id() {
-        return chat_id;
-    }
-
-    public void setChat_id(Long chat_id) {
-        this.chat_id = chat_id;
+    public void setChatId(Long chat_id) {
+        this.chatId = chat_id;
     }
 
     public String getLastName() {
