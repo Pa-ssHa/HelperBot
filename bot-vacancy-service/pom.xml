@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.bot</groupId>
-	<artifactId>HelperBot</artifactId>
+	<artifactId>bot-vacancy-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HelperBot</name>
+	<name>bot-vacancy-service</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

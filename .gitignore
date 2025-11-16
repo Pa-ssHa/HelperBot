@@ -1,13 +1,13 @@
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+bot-vacancy-service/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### config ###
 .env
-docker/db-data/
-src/main/resources/application-dev.yml
+bot-vacancy-service/docker/db-data/
+bot-vacancy-service/src/main/resources/application-dev.yml
 
 ### STS ###
 .apt_generated
@@ -19,7 +19,7 @@ src/main/resources/application-dev.yml
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+bot-vacancy-service/.idea
 *.iws
 *.iml
 *.ipr
@@ -39,6 +39,6 @@ build/
 
 
 # temp file
-src/main/java/ru/bot/HelperBot/utils/temp.java
+bot-vacancy-service/src/main/java/ru/bot/HelperBot/utils/temp.java
 
 

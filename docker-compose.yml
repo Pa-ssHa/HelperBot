@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: bot-vacancy-service/docker/Dockerfile
     image: bot_app
     container_name: bot_app
     ports:
@@ -29,7 +29,7 @@ services:
     ports:
       - "5050:5432"
     volumes:
-      - ./docker/db-data:/var/lib/postgresql/data
+      - ./bot-vacancy-service/docker/db-data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
