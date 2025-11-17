@@ -7,7 +7,9 @@ bot-vacancy-service/.mvn/wrapper/maven-wrapper.jar
 ### config ###
 .env
 bot-vacancy-service/docker/db-data/
+ai-resume-service/docker/db-data/
 bot-vacancy-service/src/main/resources/application-dev.yml
+ai-resume-service/src/main/resources/application-dev.yml
 
 ### STS ###
 .apt_generated
@@ -40,5 +42,6 @@ build/
 
 # temp file
 bot-vacancy-service/src/main/java/ru/bot/HelperBot/utils/temp.java
+bot-vacancy-service/src/main/java/ru/bot/ai-resume/utils/temp.java
 
 
