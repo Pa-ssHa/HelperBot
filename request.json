@@ -1,0 +1,5 @@
+{
+  "model": "qwen2.5:3b-instruct",
+  "prompt": "Привет! Как тебя зовут?",
+  "stream": false
+}

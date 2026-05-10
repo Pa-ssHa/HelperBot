@@ -3,3 +3,13 @@
 #  bot:
 #    username: ${TELEGRAM_BOT_USERNAME}
 #    token: ${TELEGRAM_BOT_TOKEN}
+
+ollama:
+  url: http://ollama:11434
+  model: ilyagusev/saiga_nemo_12b
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe92c44-15d6-4a4e-a724-73a3717c9bb4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/java/ru/bot/ai_resume/AiResumeServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/src/main/java/ru/bot/ai_resume/AiResumeServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V1__create_schema_and_table.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V2__update_table_users.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V3__create_table_vacancy.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V4__update_table_users.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-vacancy-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/SearchVacancyDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/SearchVacancyDispatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,40 +61,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AiResumeServiceApplication .executor": "Run",
-    "Application.AiResumeServiceApplication.executor": "Run",
-    "Application.temp.executor": "Run",
-    "Maven.HelperBot [clean].executor": "Run",
-    "Maven.HelperBot [package].executor": "Run",
-    "Maven.ai-resume [clean].executor": "Run",
-    "Maven.bot-vacancy-service [clean].executor": "Run",
-    "Maven.bot-vacancy-service [package].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AiResumeServiceApplication.executor": "Run",
-    "Spring Boot.HelperBotApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Zver/Desktop/Projects/HelperBot/ai-resume-service",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AiResumeServiceApplication .executor&quot;: &quot;Run&quot;,
+    &quot;Application.AiResumeServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ru.bot.ai_resume.temp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.temp.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.HelperBot [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.HelperBot [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ai-resume [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ai-resume [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ai-resume [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ai-resume [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.bot-vacancy-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.bot-vacancy-service [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AiResumeServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HelperBotApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Zver/Desktop/Projects/HelperBot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\ai-resume-service" />
@@ -99,7 +111,7 @@
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AiResumeServiceApplication">
+  <component name="RunManager" selected="Application.ru.bot.ai_resume.temp">
     <configuration name="AiResumeServiceApplication " type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-23" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -128,6 +140,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ru.bot.ai_resume.temp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.bot.ai_resume.temp" />
+      <module name="ai-resume" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.bot.ai_resume.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="temp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.bot.HelperBot.utils.temp" />
       <module name="bot-vacancy-service" />
@@ -137,19 +162,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="bot-vacancy-service" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="bot-vacancy-service" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,6 +182,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ru.bot.ai_resume.temp" />
         <item itemvalue="Application.AiResumeServiceApplication " />
         <item itemvalue="Application.AiResumeServiceApplication" />
         <item itemvalue="Application.temp" />
@@ -200,7 +213,26 @@
       <workItem from="1760544274657" duration="13550000" />
       <workItem from="1760911447020" duration="1047000" />
       <workItem from="1761250599024" duration="138978000" />
-      <workItem from="1763370754071" duration="2431000" />
+      <workItem from="1763370754071" duration="4602000" />
+      <workItem from="1763498828288" duration="18382000" />
+      <workItem from="1764629259992" duration="172000" />
+      <workItem from="1764629440720" duration="1383000" />
+      <workItem from="1764889756415" duration="19197000" />
+      <workItem from="1765192119247" duration="2393000" />
+      <workItem from="1766067454518" duration="14992000" />
+      <workItem from="1766231967624" duration="27564000" />
+      <workItem from="1766432128720" duration="609000" />
+      <workItem from="1766945657321" duration="23000" />
+      <workItem from="1768322881807" duration="9429000" />
+      <workItem from="1768644763277" duration="609000" />
+      <workItem from="1768678743292" duration="190000" />
+      <workItem from="1768774090558" duration="1745000" />
+      <workItem from="1768900021603" duration="2094000" />
+      <workItem from="1769585091721" duration="2000" />
+      <workItem from="1771713405819" duration="2201000" />
+      <workItem from="1776894753987" duration="2517000" />
+      <workItem from="1776947638094" duration="6000" />
+      <workItem from="1778420261867" duration="480000" />
     </task>
     <servers />
   </component>
