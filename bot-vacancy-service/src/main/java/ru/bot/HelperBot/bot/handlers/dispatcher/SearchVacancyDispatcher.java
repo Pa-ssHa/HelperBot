@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.bot.HelperBot.bot.TelegramBot;
 import ru.bot.HelperBot.bot.handlers.searchVacancyHandlers.SearchVacancyHandler;
-import ru.bot.HelperBot.model.user.UserSession;
-import ru.bot.HelperBot.service.RedisSessionService;
+import ru.bot.HelperBot.user.domain.UserSession;
+import ru.bot.HelperBot.user.redis.RedisSessionService;
 
 import java.util.List;
 import java.util.logging.Logger;

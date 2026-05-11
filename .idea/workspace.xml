@@ -5,22 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe92c44-15d6-4a4e-a724-73a3717c9bb4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/domain/UserSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/domain/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/userVacancy/domain/UserVacancy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/userVacancy/domain/UserVacancyId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/vacancy/domain/Vacancy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/docker/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ai-resume-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/java/ru/bot/ai_resume/AiResumeServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/src/main/java/ru/bot/ai_resume/AiResumeServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ai-resume-service/src/main/resources/application-docker.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V1__create_schema_and_table.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V2__update_table_users.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V3__create_table_vacancy.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-resume-service/src/main/resources/db/migration/V4__update_table_users.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-vacancy-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/callbackHandlers/CallbackTypeVacancyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/callbackHandlers/CallbackTypeVacancyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/callbackHandlers/CallbackVacancyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/callbackHandlers/CallbackVacancyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/PersonFormDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/PersonFormDispatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/SearchVacancyDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/dispatcher/SearchVacancyDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/resources/application-docker.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/AgeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/AgeHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/CityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/CityHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/FirstNameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/FirstNameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/LastNameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/LastNameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/PersonStateHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/PersonStateHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/StartHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/StartHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/personFormHandlers/VacancyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/userFormHandlers/VacancyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/searchVacancyHandlers/SearchHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/searchVacancyHandlers/SearchHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/searchVacancyHandlers/SearchVacancyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/bot/handlers/searchVacancyHandlers/SearchVacancyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/redis/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/Vacancy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/user/UserSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/user/UserState.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/domain/UserState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/user/UserVacancy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/user/UserVacancyId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/model/user/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/repository/UserVacancyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/userVacancy/repository/UserVacancyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/repository/VacancyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/vacancy/repository/VacancyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/RedisSessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/redis/RedisSessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/UserVacancyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/userVacancy/service/UserVacancyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/VacancyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/vacancy/service/VacancyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/message/MessageInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/message/MessageInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/service/message/MessageVacancyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/message/MessageVacancyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/utils/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-vacancy-service/src/main/java/ru/bot/HelperBot/user/facade/UserMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +57,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="package-info" />
       </list>
     </option>
   </component>
@@ -50,6 +75,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -61,45 +89,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AiResumeServiceApplication .executor&quot;: &quot;Run&quot;,
-    &quot;Application.AiResumeServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ru.bot.ai_resume.temp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.temp.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.HelperBot [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.HelperBot [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ai-resume [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ai-resume [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ai-resume [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ai-resume [validate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.bot-vacancy-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.bot-vacancy-service [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AiResumeServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.HelperBotApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Zver/Desktop/Projects/HelperBot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AiResumeServiceApplication .executor": "Run",
+    "Application.AiResumeServiceApplication.executor": "Run",
+    "Application.ru.bot.ai_resume.temp.executor": "Run",
+    "Application.temp.executor": "Run",
+    "Maven.HelperBot [clean].executor": "Run",
+    "Maven.HelperBot [package].executor": "Run",
+    "Maven.ai-resume [clean].executor": "Run",
+    "Maven.ai-resume [compile].executor": "Run",
+    "Maven.ai-resume [package].executor": "Run",
+    "Maven.ai-resume [validate].executor": "Run",
+    "Maven.bot-vacancy-service [clean].executor": "Run",
+    "Maven.bot-vacancy-service [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AiResumeServiceApplication.executor": "Run",
+    "Spring Boot.HelperBotApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Zver/Desktop/Projects/HelperBot/bot-vacancy-service/src/main/java/ru/bot/HelperBot/vacancy",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\ai-resume-service" />
@@ -158,7 +186,7 @@
       <module name="bot-vacancy-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.bot.HelperBot.utils.*" />
+          <option name="PATTERN" value="ru.bot.HelperBot.user.facade.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -232,7 +260,7 @@
       <workItem from="1771713405819" duration="2201000" />
       <workItem from="1776894753987" duration="2517000" />
       <workItem from="1776947638094" duration="6000" />
-      <workItem from="1778420261867" duration="480000" />
+      <workItem from="1778420261867" duration="7060000" />
     </task>
     <servers />
   </component>

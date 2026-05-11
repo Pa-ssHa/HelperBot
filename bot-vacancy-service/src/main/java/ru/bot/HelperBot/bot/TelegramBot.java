@@ -20,7 +20,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.bot.HelperBot.bot.handlers.dispatcher.CallbackVacancyDispatcher;
 import ru.bot.HelperBot.bot.handlers.dispatcher.PersonFormDispatcher;
 import ru.bot.HelperBot.bot.handlers.dispatcher.SearchVacancyDispatcher;
-import ru.bot.HelperBot.service.message.MessageInfoService;
+import ru.bot.HelperBot.message.MessageInfoService;
 
 import java.util.logging.Logger;
 
@@ -196,7 +196,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             byte[] pdfBytes = downloadMyFile(fileId);
 
             // Создаём multipart/form-data
-            var resource = new ByteArrayResource(pdfBytes) {
+            var file = new ByteArrayResource(pdfBytes) {
                 @Override
                 public String getFilename() {
                     return "resume.pdf";
@@ -206,7 +206,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             String response = aiServiceClient.post()
                     .uri("/api/ai/resume/analyze")
                     .contentType(MediaType.MULTIPART_FORM_DATA)
-                    .bodyValue(resource)
+                    .bodyValue(file)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();

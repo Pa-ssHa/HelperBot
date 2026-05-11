@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import ru.bot.HelperBot.bot.TelegramBot;
-import ru.bot.HelperBot.service.UserVacancyService;
+import ru.bot.HelperBot.userVacancy.service.UserVacancyService;
 
 @Service
 public class CallbackTypeVacancyHandler implements CallbackVacancyHandler{

@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.bot.HelperBot.bot.TelegramBot;
-import ru.bot.HelperBot.bot.handlers.personFormHandlers.PersonStateHandler;
-import ru.bot.HelperBot.model.user.UserSession;
-import ru.bot.HelperBot.service.RedisSessionService;
+import ru.bot.HelperBot.bot.handlers.userFormHandlers.PersonStateHandler;
+import ru.bot.HelperBot.user.domain.UserSession;
+import ru.bot.HelperBot.user.redis.RedisSessionService;
 
 import java.util.List;
 

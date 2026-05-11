@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.bot.HelperBot.bot.TelegramBot;
-import ru.bot.HelperBot.model.Vacancy;
-import ru.bot.HelperBot.model.user.UserSession;
-import ru.bot.HelperBot.service.VacancyService;
-import ru.bot.HelperBot.service.message.MessageVacancyService;
+import ru.bot.HelperBot.vacancy.domain.Vacancy;
+import ru.bot.HelperBot.vacancy.service.VacancyService;
+import ru.bot.HelperBot.message.MessageVacancyService;
 
 @Component
 public class SearchHandler implements SearchVacancyHandler {
