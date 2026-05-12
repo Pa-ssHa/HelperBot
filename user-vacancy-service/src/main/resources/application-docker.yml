@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/helperbot
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+  data:
+    redis:
+      host: redis
+      port: 6379

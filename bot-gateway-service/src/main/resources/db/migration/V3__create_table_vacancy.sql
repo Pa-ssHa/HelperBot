@@ -15,4 +15,3 @@ CREATE TABLE user_vacancy(
     is_hidden BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, vacancy_id)
 );
-

@@ -13,7 +13,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
         <module name="ai-resume" />
       </profile>
@@ -25,15 +24,13 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
         <module name="user-vacancy-service" />
-        <module name="bot-vacancy-service" />
+        <module name="bot-gateway-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="bot-vacancy-service" target="21" />
       <module name="HelperBot" target="21" />
     </bytecodeTargetLevel>
   </component>
@@ -41,6 +38,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="HelperBot" options="-parameters" />
       <module name="ai-resume" options="-parameters" />
+      <module name="bot-gateway-service" options="-parameters" />
       <module name="bot-vacancy-service" options="-parameters" />
       <module name="user-vacancy-service" options="-parameters" />
     </option>

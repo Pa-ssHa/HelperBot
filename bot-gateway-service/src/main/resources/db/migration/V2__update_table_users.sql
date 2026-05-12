@@ -8,6 +8,4 @@ ALTER TABLE users
     DROP COLUMN IF EXISTS desired_salary;
 
 ALTER TABLE users
-    RENAME COLUMN telegram_id TO chat_id
-
-
+    RENAME COLUMN telegram_id TO chat_id;

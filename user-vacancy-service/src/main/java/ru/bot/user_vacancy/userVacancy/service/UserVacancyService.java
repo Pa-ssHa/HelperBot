@@ -38,7 +38,7 @@ public class UserVacancyService {
         userVacancyId.setVacancyId(vacancyId);
         Optional<UserVacancy> userVacancy = userVacancyRepository.findById(userVacancyId);
         userVacancy.ifPresent(vacancy -> {
-            vacancy.setIs_favorite(true);
+            vacancy.setFavorite(true);
             userVacancyRepository.save(vacancy);
         });
     }
@@ -50,7 +50,7 @@ public class UserVacancyService {
         userVacancyId.setVacancyId(vacancyId);
         Optional<UserVacancy> userVacancy = userVacancyRepository.findById(userVacancyId);
         userVacancy.ifPresent(vacancy -> {
-            vacancy.setIs_hidden(true);
+            vacancy.setHidden(true);
             userVacancyRepository.save(vacancy);
         });
     }

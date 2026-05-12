@@ -3,9 +3,12 @@ package ru.bot.HelperBot.bot.dispetcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import ru.bot.HelperBot.bot.dto.BotCommand;
 import ru.bot.HelperBot.bot.dto.BotResponse;
 import ru.bot.HelperBot.userVacancy.client.BotVacancyServiceClient;
 import ru.bot.HelperBot.userVacancy.facade.RateVacancyMapper;
+
+import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +22,14 @@ public class CallbackDispatcher {
         String data = callbackQuery.getData();
 
         if (data.startsWith("vacancy:")) {
-            return botVacancyServiceClient.handleRateVacancy(rateVacancyMapper.toRateVacancyCallbackRequest(callbackQuery));
+            BotResponse response = botVacancyServiceClient.handleRateVacancy(rateVacancyMapper.toRateVacancyCallbackRequest(callbackQuery));
+            var commands = new ArrayList<BotCommand>();
+            if (response != null && response.commands() != null) {
+                commands.addAll(response.commands());
+            }
+            commands.add(BotCommand.answerCallback(callbackQuery.getId()));
+            return new BotResponse(commands);
         }
-        return null;
+        return BotResponse.empty();
     }
 }
