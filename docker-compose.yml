@@ -4,7 +4,7 @@ services:
   bot-vacancy-service:
     build:
       context: .
-      dockerfile: bot-vacancy-service/docker/Dockerfile
+      dockerfile: bot-gateway-service/docker/Dockerfile
     image: bot_vacancy_service
     container_name: bot_vacancy_service
     ports:
