@@ -92,6 +92,26 @@ services:
     networks:
       - app-network
 
+  news-service:
+    build:
+      context: .
+      dockerfile: news-service/docker/Dockerfile
+    image: news-service
+    container_name: news_service
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./news-service:/app
+    env_file:
+      - .env
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+
   ollama:
     image: ollama/ollama:latest
     container_name: ollama-ai

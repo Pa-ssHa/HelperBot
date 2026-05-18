@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/ai-resume-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bot-gateway-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bot-vacancy-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/news-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-vacancy-service/src/main/java" charset="UTF-8" />
   </component>
 </project>
