@@ -1,9 +1,10 @@
-package ru.bot.HelperBot.bot.message;
+package ru.bot.HelperBot.bot.message.dispatcher;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.bot.HelperBot.bot.dto.BotResponse;
+import ru.bot.HelperBot.bot.message.handler.MessageHandler;
 
 import java.util.List;
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.bot.HelperBot.bot.document.DocumentDispatcher;
 import ru.bot.HelperBot.bot.dto.BotResponse;
-import ru.bot.HelperBot.bot.message.MessageDispatcher;
+import ru.bot.HelperBot.bot.message.dispatcher.MessageDispatcher;
 
 @Service
 @RequiredArgsConstructor

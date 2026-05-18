@@ -5,9 +5,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.bot.HelperBot.aiResume.client.AiResumeClient;
+import ru.bot.HelperBot.aiResume.dto.ResumeAnalysisResponse;
 import ru.bot.HelperBot.bot.dto.BotCommand;
 import ru.bot.HelperBot.bot.dto.BotResponse;
 import ru.bot.HelperBot.telegram.client.TelegramFileClient;
+
+import java.util.List;
 
 @Component
 @Order(10)
@@ -26,11 +29,19 @@ public class PdfResumeDocumentHandler implements DocumentHandler {
     @Override
     public BotResponse handle(Message message) {
         try {
-            byte[] pdfBytes = telegramFileClient.download(message.getDocument().getFileId());
-            String response = aiResumeClient.analyze(pdfBytes);
+            String fileName = message.getDocument().getFileName();
+            String telegramFileId = message.getDocument().getFileId();
+
+            byte[] pdfBytes = telegramFileClient.download(telegramFileId);
+
+            ResumeAnalysisResponse response = aiResumeClient.analyze(pdfBytes,
+                    message.getChatId(),
+                    fileName,
+                    telegramFileId);
+
             return BotResponse.of(
                     BotCommand.sendMessage(message.getChatId(), "Файл получен, анализирую..."),
-                    BotCommand.sendMessage(message.getChatId(), "Результат анализа:\n\n" + response)
+                    BotCommand.sendMessage(message.getChatId(), formatAnalysis(response))
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,5 +50,40 @@ public class PdfResumeDocumentHandler implements DocumentHandler {
                     "Ошибка при анализе резюме: " + e.getMessage()
             ));
         }
+    }
+
+    private String formatAnalysis(ResumeAnalysisResponse response) {
+        return """
+            📄 Результат анализа резюме
+
+            ⭐ Оценка: %d/10
+            🎯 Соответствие профессии: %d%%
+
+            ✅ Сильные стороны:
+            %s
+
+            ⚠️ Слабые стороны:
+            %s
+
+            💡 Рекомендации:
+            %s
+            """.formatted(
+                response.getScore(),
+                response.getProfession_match(),
+                formatList(response.getStrengths()),
+                formatList(response.getWeaknesses()),
+                formatList(response.getRecommendations())
+        );
+    }
+
+    private String formatList(List<String> items) {
+        if (items == null || items.isEmpty()) {
+            return "— Не указано";
+        }
+
+        return items.stream()
+                .map(item -> "• " + item)
+                .reduce((a, b) -> a + "\n" + b)
+                .orElse("— Не указано");
     }
 }

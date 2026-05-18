@@ -1,6 +1,7 @@
 package ru.bot.user_vacancy.user.dispatcher;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.bot.user_vacancy.common.dto.BotResponse;
 import ru.bot.user_vacancy.common.dto.UserMessageRequest;
@@ -10,6 +11,7 @@ import ru.bot.user_vacancy.user.redis.RedisSessionService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PersonFormDispatcher {
@@ -23,7 +25,11 @@ public class PersonFormDispatcher {
         }
 
         Long chatId = request.chatId();
+        log.info("chatId: {}", chatId);
+
         UserSession userSession = redisSessionService.getOrCreate(chatId);
+
+        log.info("userSession: {}", userSession);
 
         for (PersonStateHandler personHandler : personHandlers) {
             if (personHandler.canHandle(request, userSession)) {

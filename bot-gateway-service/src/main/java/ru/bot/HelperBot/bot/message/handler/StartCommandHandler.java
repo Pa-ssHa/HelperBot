@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.bot.message;
+package ru.bot.HelperBot.bot.message.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;

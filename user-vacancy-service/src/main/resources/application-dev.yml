@@ -10,3 +10,7 @@ spring:
     redis:
       host: localhost
       port: 6379
+
+hh:
+  access:
+    token: ${HH_ACCESS_TOKEN}

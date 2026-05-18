@@ -1,4 +1,4 @@
-package ru.bot.HelperBot.bot.message;
+package ru.bot.HelperBot.bot.message.handler;
 
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.bot.HelperBot.bot.dto.BotResponse;

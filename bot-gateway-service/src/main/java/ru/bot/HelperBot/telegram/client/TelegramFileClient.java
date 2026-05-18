@@ -3,6 +3,7 @@ package ru.bot.HelperBot.telegram.client;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
@@ -19,9 +20,17 @@ public class TelegramFileClient {
                 .clone()
                 .baseUrl("https://api.telegram.org")
                 .build();
+
+        ExchangeStrategies fileStrategies = ExchangeStrategies.builder()
+                .codecs(configurer ->
+                        configurer.defaultCodecs().maxInMemorySize(20 * 1024 * 1024)
+                )
+                .build();
+
         this.fileClient = webClientBuilder
                 .clone()
                 .baseUrl("https://api.telegram.org")
+                .exchangeStrategies(fileStrategies)
                 .build();
     }
 

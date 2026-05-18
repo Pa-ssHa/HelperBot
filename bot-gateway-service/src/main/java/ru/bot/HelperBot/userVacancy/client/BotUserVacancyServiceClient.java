@@ -8,11 +8,11 @@ import ru.bot.HelperBot.userVacancy.dto.SearchVacancyRequest;
 import ru.bot.HelperBot.userVacancy.dto.UserMessageRequest;
 
 @Service
-public class BotVacancyServiceClient {
+public class BotUserVacancyServiceClient {
 
     private final WebClient webClient;
 
-    public BotVacancyServiceClient(WebClient.Builder builder) {
+    public BotUserVacancyServiceClient(WebClient.Builder builder) {
         this.webClient = builder
                 .baseUrl("http://user-vacancy-service:8082")
                 .build();

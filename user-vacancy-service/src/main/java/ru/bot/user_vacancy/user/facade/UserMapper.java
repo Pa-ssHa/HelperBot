@@ -9,11 +9,11 @@ public class UserMapper {
 
     public Users toUsers(UserSession userSession){
         Users users = new Users();
+        users.setChatId(userSession.getChatId());
         users.setFirstName(userSession.getFirstName());
         users.setLastName(userSession.getLastName());
         users.setAge(userSession.getAge());
         users.setCity(userSession.getCity());
-        users.setChatId(userSession.getChatId());
         users.setProfession(userSession.getNameVacancy());
         return users;
     }

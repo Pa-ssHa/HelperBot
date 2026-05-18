@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import ru.bot.user_vacancy.user.service.UserService;
@@ -20,16 +21,28 @@ public class VacancyService {
     private final VacancyRepository vacancyRepository;
     private final UserVacancyService userVacancyService;
     private final UserService userService;
+    private final RestClient restClient;
 
-    private final String URI = "https://api.hh.ru/vacancies";
-    private final RestClient restClient = RestClient.create();
 
     @Autowired
-    public VacancyService(VacancyRepository vacancyRepository, UserVacancyService userVacancyService, UserService userService) {
+    public VacancyService(
+            VacancyRepository vacancyRepository,
+            UserVacancyService userVacancyService,
+            UserService userService,
+            @Value("${hh.access.token}") String hhAccessToken
+    ) {
         this.vacancyRepository = vacancyRepository;
         this.userVacancyService = userVacancyService;
         this.userService = userService;
+
+        this.restClient = RestClient.builder()
+                .baseUrl("https://api.hh.ru")
+                .defaultHeader("User-Agent", "HelperBot/1.0 (pogoreloffpaulus@yandex.ru)")
+                .defaultHeader("Accept", "application/json")
+                .defaultHeader("Authorization", "Bearer " + hhAccessToken)
+                .build();
     }
+
 
     public List<Vacancy> findVacancy(Long chatId) {
 
@@ -48,7 +61,8 @@ public class VacancyService {
 
             try {
                 String response = restClient.get()
-                        .uri(URI, builder -> builder
+                        .uri(builder -> builder
+                                .path("/vacancies")
                                 .queryParam("per_page", countVacancy)
                                 .queryParam("page", numberPage[0])
                                 .queryParam("text", userService.findByChatId(chatId).getProfession())
@@ -61,7 +75,7 @@ public class VacancyService {
                 JsonNode jsonNode = mapper.readTree(response);
                 int sizeResponse = jsonNode.get("items").size();
 
-                if (sizeResponse == 0 ) {
+                if (sizeResponse == 0) {
                     break;
                 }
 
@@ -73,7 +87,13 @@ public class VacancyService {
                     if (!savedVacancies.contains(Long.parseLong(item.get("id").asText()))) {
                         vacancy.setIdVacancy(Integer.parseInt(item.get("id").asText()));
                         vacancy.setNameVacancy(item.get("name").asText());
-                        vacancy.setSalary(item.get("salary_range").asText());
+                        JsonNode salary = item.get("salary");
+
+                        if (salary == null || salary.isNull()) {
+                            vacancy.setSalary("Не указана");
+                        } else {
+                            vacancy.setSalary(salary.toString());
+                        }
                         vacancy.setCity(item.get("area").get("name").asText());
                         vacancy.setCompany(item.get("employer").get("name").asText());
                         vacancies.add(vacancy);
@@ -91,7 +111,7 @@ public class VacancyService {
 
                     }
                 }
-                if (sizeResponse < countVacancy){
+                if (sizeResponse < countVacancy) {
                     flagCompete = true;
                 }
 

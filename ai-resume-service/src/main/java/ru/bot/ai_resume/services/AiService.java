@@ -40,6 +40,7 @@ public class AiService {
         payload.put("model", "ilyagusev/saiga_nemo_12b:latest");
         payload.put("prompt", prompt);
         payload.put("stream", false);
+        payload.put("format", "json");
 
         try {
             JsonNode response = webClient.post()
