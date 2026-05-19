@@ -1,5 +1,6 @@
 package ru.bot.HelperBot.userVacancy.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import ru.bot.HelperBot.bot.dto.BotResponse;
@@ -12,9 +13,12 @@ public class BotUserVacancyServiceClient {
 
     private final WebClient webClient;
 
-    public BotUserVacancyServiceClient(WebClient.Builder builder) {
+    public BotUserVacancyServiceClient(
+            WebClient.Builder builder,
+            @Value("${services.user-vacancy.url}") String userVacancyServiceUrl
+    ) {
         this.webClient = builder
-                .baseUrl("http://user-vacancy-service:8082")
+                .baseUrl(userVacancyServiceUrl)
                 .build();
     }
 

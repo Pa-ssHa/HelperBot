@@ -8,6 +8,8 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import ru.bot.HelperBot.bot.dto.BotCommand;
+import ru.bot.HelperBot.bot.dto.BotResponse;
 import ru.bot.HelperBot.bot.dispetcher.GatewayMainDispatcher;
 import ru.bot.HelperBot.bot.executor.BotResponseExecutor;
 
@@ -51,6 +53,30 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        botResponseExecutor.execute(gatewayMainDispatcher.dispatch(update), this);
+        try {
+            botResponseExecutor.execute(gatewayMainDispatcher.dispatch(update), this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Long chatId = extractChatId(update);
+            if (chatId != null) {
+                botResponseExecutor.execute(
+                        BotResponse.of(BotCommand.sendMessage(chatId, "Сервис временно недоступен. Попробуйте чуть позже.")),
+                        this
+                );
+            }
+        }
+    }
+
+    private Long extractChatId(Update update) {
+        if (update == null) {
+            return null;
+        }
+        if (update.hasMessage()) {
+            return update.getMessage().getChatId();
+        }
+        if (update.hasCallbackQuery() && update.getCallbackQuery().getMessage() != null) {
+            return update.getCallbackQuery().getMessage().getChatId();
+        }
+        return null;
     }
 }

@@ -12,3 +12,11 @@ telegram:
   bot:
     username: ${TELEGRAM_BOT_USERNAME}
     token: ${TELEGRAM_BOT_TOKEN}
+
+services:
+  user-vacancy:
+    url: http://localhost:8082
+  ai-resume:
+    url: http://localhost:8081
+  news:
+    url: http://localhost:8083

@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe92c44-15d6-4a4e-a724-73a3717c9bb4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/userVacancy/message/MessageInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/userVacancy/message/MessageInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/news/client/NewsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/news/client/NewsClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/NewsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/NewsServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/test/java/ru/bot/user_vacancy/UserVacancyServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/test/java/ru/bot/user_vacancy/UserVacancyServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +28,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Record" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -76,6 +81,8 @@
     "Maven.bot-gateway-service [package].executor": "Run",
     "Maven.bot-vacancy-service [clean].executor": "Run",
     "Maven.bot-vacancy-service [package].executor": "Run",
+    "Maven.news-service [clean].executor": "Run",
+    "Maven.news-service [package].executor": "Run",
     "Maven.user-vacancy-service [clean].executor": "Run",
     "Maven.user-vacancy-service [install].executor": "Run",
     "Maven.user-vacancy-service [package].executor": "Run",
@@ -89,7 +96,7 @@
     "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Zver/Desktop/Projects/HelperBot/news-service/src/main/resources",
+    "last_opened_file_path": "C:/Users/Zver/Desktop/Projects/HelperBot/news-service/src/main/java/ru/bot/news_service/dto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -107,11 +114,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\news-service\src\main\java\ru\bot\news_service\dto" />
+      <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\news-service" />
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\news-service\src\main\resources" />
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\user-vacancy-service\src\main\java\ru\bot\user_vacancy\common" />
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\bot-vacancy-service\src\main\java\ru\bot\HelperBot\aiResume" />
-      <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\bot-vacancy-service\src\main\java\ru\bot\HelperBot\vacancy" />
-      <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\bot-vacancy-service\src\main\java\ru\bot\HelperBot\userVacancy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot\bot-gateway-service\src\main\resources\db\migration" />
@@ -120,6 +127,7 @@
       <recent name="C:\Users\Zver\Desktop\Projects\HelperBot" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.bot.news_service.dto" />
       <recent name="ru.bot.user_vacancy.common.dto" />
     </key>
   </component>
@@ -271,7 +279,9 @@
       <workItem from="1776947638094" duration="6000" />
       <workItem from="1778420261867" duration="10196000" />
       <workItem from="1778504402434" duration="123000" />
-      <workItem from="1778504531894" duration="49178000" />
+      <workItem from="1778504531894" duration="49505000" />
+      <workItem from="1779117910088" duration="7103000" />
+      <workItem from="1779137317942" duration="4939000" />
     </task>
     <servers />
   </component>

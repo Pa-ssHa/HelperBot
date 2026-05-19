@@ -35,6 +35,7 @@ services:
       - .env
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true
     volumes:
       - ./bot-gateway-service:/app
     depends_on:
@@ -43,6 +44,8 @@ services:
       postgres:
         condition: service_healthy
       ai-resume-service:
+        condition: service_started
+      news-service:
         condition: service_started
     networks:
       - app-network
@@ -62,6 +65,7 @@ services:
       - .env
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true
     depends_on:
       postgres:
         condition: service_healthy
@@ -106,9 +110,10 @@ services:
       - .env
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_TOOL_OPTIONS=-Djava.net.preferIPv4Stack=true
     depends_on:
-      postgres:
-        condition: service_healthy
+      user-vacancy-service:
+        condition: service_started
     networks:
       - app-network
 

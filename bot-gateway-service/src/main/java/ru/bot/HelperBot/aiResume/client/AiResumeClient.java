@@ -1,5 +1,6 @@
 package ru.bot.HelperBot.aiResume.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,10 @@ public class AiResumeClient {
 
     private final WebClient webClient;
 
-    public AiResumeClient(WebClient.Builder webClientBuilder) {
+    public AiResumeClient(
+            WebClient.Builder webClientBuilder,
+            @Value("${services.ai-resume.url}") String aiResumeServiceUrl
+    ) {
         ExchangeStrategies strategies = ExchangeStrategies.builder()
                 .codecs(configurer ->
                         configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)
@@ -24,7 +28,7 @@ public class AiResumeClient {
         this.webClient = webClientBuilder
                 .exchangeStrategies(strategies)
                 .clone()
-                .baseUrl("http://ai-resume-service:8081")
+                .baseUrl(aiResumeServiceUrl)
                 .build();
     }
 

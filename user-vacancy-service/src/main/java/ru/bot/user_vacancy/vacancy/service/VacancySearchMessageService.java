@@ -2,6 +2,7 @@ package ru.bot.user_vacancy.vacancy.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import ru.bot.user_vacancy.common.dto.BotCommand;
 import ru.bot.user_vacancy.common.dto.BotResponse;
 import ru.bot.user_vacancy.common.dto.SearchVacancyRequest;
@@ -28,7 +29,15 @@ public class VacancySearchMessageService {
             return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Сначала заполните анкету командой /my_info"));
         }
 
-        List<Vacancy> vacancies = vacancyService.findVacancy(request.chatId());
+        List<Vacancy> vacancies;
+        try {
+            vacancies = vacancyService.findVacancy(request.chatId());
+        } catch (RestClientException e) {
+            return BotResponse.of(BotCommand.sendMessage(
+                    request.chatId(),
+                    "Не удалось получить вакансии от HH. Попробуйте чуть позже."
+            ));
+        }
         if (vacancies.isEmpty()) {
             return BotResponse.of(BotCommand.sendMessage(request.chatId(), "По вашей профессии ничего не найдено"));
         }
