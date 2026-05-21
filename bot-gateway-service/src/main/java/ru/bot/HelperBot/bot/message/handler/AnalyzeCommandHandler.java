@@ -19,7 +19,7 @@ public class AnalyzeCommandHandler implements MessageHandler {
     public BotResponse handle(Message message) {
         return BotResponse.of(BotCommand.sendMessage(
                 message.getChatId(),
-                "Отправьте PDF-файл с резюме, и я его проанализирую."
+                "Отправьте PDF-файл с резюме, и я подготовлю разбор."
         ));
     }
 }

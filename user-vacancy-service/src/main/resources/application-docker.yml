@@ -14,3 +14,13 @@ spring:
 hh:
   access:
     token: ${HH_ACCESS_TOKEN}
+
+services:
+  gateway:
+    url: http://bot-gateway-service:8080
+
+vacancy:
+  notifications:
+    delay-ms: 180000
+    initial-delay-ms: 60000
+    lookback-minutes: 3

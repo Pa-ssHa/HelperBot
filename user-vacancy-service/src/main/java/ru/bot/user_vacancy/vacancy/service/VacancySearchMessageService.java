@@ -56,23 +56,35 @@ public class VacancySearchMessageService {
         return new BotResponse(commands);
     }
 
-    private BotCommand toCommand(Long chatId, Vacancy vacancy) {
+    public BotCommand toCommand(Long chatId, Vacancy vacancy) {
         String text = String.format(
-                "*%s*%n%s%n%s%n%s%n%s",
-                vacancy.getNameVacancy(),
-                vacancy.getCompany(),
-                vacancy.getCity(),
-                vacancy.getSalary(),
+                "*%s*%n%nКомпания: %s%nГород: %s%nЗарплата: %s%n%n%s",
+                escapeMarkdown(vacancy.getNameVacancy()),
+                escapeMarkdown(vacancy.getCompany()),
+                escapeMarkdown(vacancy.getCity()),
+                escapeMarkdown(vacancy.getSalary()),
                 "https://hh.ru/vacancy/" + vacancy.getIdVacancy()
         );
 
         List<List<BotCommand.InlineButton>> keyboard = List.of(
                 List.of(
-                        new BotCommand.InlineButton("\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432 \u0438\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435", "vacancy:favorite:" + vacancy.getIdVacancy()),
-                        new BotCommand.InlineButton("\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0432\u0430\u043a\u0430\u043d\u0441\u0438\u044e", "vacancy:hidden:" + vacancy.getIdVacancy())
+                        new BotCommand.InlineButton("В избранное", "vacancy:favorite:" + vacancy.getIdVacancy()),
+                        new BotCommand.InlineButton("Скрыть", "vacancy:hidden:" + vacancy.getIdVacancy())
                 )
         );
 
         return BotCommand.sendMessage(chatId, text, "Markdown", keyboard);
+    }
+
+    private String escapeMarkdown(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value
+                .replace("\\", "\\\\")
+                .replace("*", "\\*")
+                .replace("_", "\\_")
+                .replace("`", "\\`")
+                .replace("[", "\\[");
     }
 }

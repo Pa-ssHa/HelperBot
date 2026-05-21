@@ -9,8 +9,8 @@ public class MessageInfoService {
 
     public List<List<String>> mainMenu() {
         return List.of(
-                List.of("/my_info", "/sub_news"),
-                List.of("/searchVacancy", "/analyse")
+                List.of("/my_info", "/searchVacancy"),
+                List.of("/sub_news", "/analyse")
         );
     }
 }

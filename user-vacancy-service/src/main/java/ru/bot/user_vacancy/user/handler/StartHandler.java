@@ -20,6 +20,6 @@ public class StartHandler implements PersonStateHandler {
     @Override
     public BotResponse handle(UserMessageRequest request, UserSession userSession) {
         userSession.setUserState(UserState.WAITING_FIRSTNAME);
-        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Введите имя"));
+        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Заполним анкету. Введите имя."));
     }
 }

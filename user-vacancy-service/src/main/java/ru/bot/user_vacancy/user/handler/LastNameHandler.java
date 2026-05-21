@@ -19,6 +19,6 @@ public class LastNameHandler implements PersonStateHandler {
     public BotResponse handle(UserMessageRequest request, UserSession userSession) {
         userSession.setLastName(request.text().trim());
         userSession.setUserState(UserState.WAITING_AGE);
-        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Фамилия сохранена. Введите ваш возраст"));
+        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Фамилия сохранена. Введите возраст числом."));
     }
 }

@@ -1,0 +1,2 @@
+ALTER TABLE helperbot.vacancy
+    ADD COLUMN IF NOT EXISTS published_at TIMESTAMP WITH TIME ZONE;

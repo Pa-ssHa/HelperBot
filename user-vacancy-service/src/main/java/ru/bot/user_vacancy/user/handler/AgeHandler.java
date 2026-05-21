@@ -20,10 +20,10 @@ public class AgeHandler implements PersonStateHandler {
         try {
             userSession.setAge(Integer.parseInt(request.text().trim()));
         } catch (NumberFormatException e) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Введите возраст числом"));
+            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Введите возраст числом, например 28."));
         }
 
         userSession.setUserState(UserState.WAITING_VACANCY);
-        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Возраст сохранен. Введите вакансию"));
+        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Возраст сохранён. Введите профессию или должность для поиска."));
     }
 }

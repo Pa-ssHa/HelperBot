@@ -22,14 +22,25 @@ public class UserSession {
     private String city;
     private LocalDate date;
     private String nameVacancy;
+    private Integer desiredSalary;
     private LocalDateTime lastActivity;
 
     @Override
     public String toString() {
-        return "Имя: " + firstName +
-                ", Фамилия: " + lastName +
-                ", Возраст: " + age +
-                ", Город: " + city +
-                ", Название вакансии: " + nameVacancy;
+        String salary = desiredSalary == null || desiredSalary <= 0
+                ? "не указаны"
+                : formatSalary(desiredSalary);
+
+        return "Анкета сохранена\n\n" +
+                "Имя: " + firstName + "\n" +
+                "Фамилия: " + lastName + "\n" +
+                "Возраст: " + age + "\n" +
+                "Профессия: " + nameVacancy + "\n" +
+                "Город: " + city + "\n" +
+                "Зарплатные ожидания: " + salary;
+    }
+
+    private String formatSalary(Integer value) {
+        return String.format("%,d", value).replace(',', ' ') + " руб.";
     }
 }

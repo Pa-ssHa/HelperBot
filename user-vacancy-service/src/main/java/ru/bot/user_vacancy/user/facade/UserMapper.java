@@ -15,6 +15,7 @@ public class UserMapper {
         users.setAge(userSession.getAge());
         users.setCity(userSession.getCity());
         users.setProfession(userSession.getNameVacancy());
+        users.setDesiredSalary(userSession.getDesiredSalary());
         return users;
     }
 }

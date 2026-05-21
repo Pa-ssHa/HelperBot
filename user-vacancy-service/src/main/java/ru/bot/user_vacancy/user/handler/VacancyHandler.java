@@ -18,7 +18,10 @@ public class VacancyHandler implements PersonStateHandler {
     @Override
     public BotResponse handle(UserMessageRequest request, UserSession userSession) {
         userSession.setNameVacancy(request.text().trim());
-        userSession.setUserState(UserState.WAITING_CITY);
-        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Вакансия сохранена. Введите город для работы."));
+        userSession.setUserState(UserState.WAITING_SALARY_EXPECTATION);
+        return BotResponse.of(BotCommand.sendMessage(
+                request.chatId(),
+                "Профессия сохранена. Введите зарплатные ожидания числом, например 180000. Если не важно, отправьте 0."
+        ));
     }
 }

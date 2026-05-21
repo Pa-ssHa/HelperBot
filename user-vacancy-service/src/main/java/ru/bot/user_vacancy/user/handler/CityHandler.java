@@ -27,7 +27,7 @@ public class CityHandler implements PersonStateHandler {
         userService.save(userSession);
 
         return BotResponse.of(
-                BotCommand.sendMessage(request.chatId(), "Город сохранен успешно. Заполнение окончено. Проверьте сохраненную информацию, если что-то неверно, вызовите снова /my_info и заполните анкету сначала."),
+                BotCommand.sendMessage(request.chatId(), "Город сохранён. Анкета заполнена, проверьте данные ниже. Если нужно изменить анкету, запустите /my_info ещё раз."),
                 BotCommand.sendMessage(request.chatId(), userSession.toString())
         );
     }

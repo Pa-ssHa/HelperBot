@@ -22,4 +22,5 @@ public class Users {
     private int age;
     private String city;
     private String profession;
+    private Integer desiredSalary;
 }

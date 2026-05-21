@@ -19,6 +19,6 @@ public class FirstNameHandler implements PersonStateHandler {
     public BotResponse handle(UserMessageRequest request, UserSession userSession) {
         userSession.setFirstName(request.text().trim());
         userSession.setUserState(UserState.WAITING_LASTNAME);
-        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Имя сохранено. Введите вашу фамилию"));
+        return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Имя сохранено. Теперь введите фамилию."));
     }
 }
