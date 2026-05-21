@@ -9,19 +9,23 @@ import ru.bot.news_service.dto.BotResponse;
 import ru.bot.news_service.dto.NewsApiResponse;
 import ru.bot.news_service.dto.NewsArticleDto;
 import ru.bot.news_service.dto.NewsMessageRequest;
+import ru.bot.news_service.service.NewsHistoryService;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
 public class SearchNewsMessageHandler implements NewsMessageHandler {
 
     private static final String NEWS_COMMAND = "/sub_news";
+    private static final int RESPONSE_ARTICLES_LIMIT = 2;
 
     private final UserDetailsClient userDetailsClient;
     private final NewsApiClient newsApiClient;
+    private final NewsHistoryService newsHistoryService;
 
     @Override
     public boolean canHandle(NewsMessageRequest request) {
@@ -49,11 +53,22 @@ public class SearchNewsMessageHandler implements NewsMessageHandler {
             return BotResponse.of(BotCommand.sendMessage(request.chatId(), "По вашей профессии новости не найдены"));
         }
 
+        Set<String> viewedNewsIds = newsHistoryService.findViewedNewsIds(request.chatId());
+        List<NewsArticleDto> newArticles = response.articles().stream()
+                .filter(article -> article.title() != null && article.url() != null)
+                .filter(article -> !viewedNewsIds.contains(newsHistoryService.articleId(article)))
+                .limit(RESPONSE_ARTICLES_LIMIT)
+                .toList();
+
+        if (newArticles.isEmpty()) {
+            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Новых новостей по вашей профессии пока нет"));
+        }
+
+        newsHistoryService.saveViewed(request.chatId(), theme, newArticles);
+
         List<BotCommand> commands = new ArrayList<>();
         commands.add(BotCommand.sendMessage(request.chatId(), "Новости по теме: " + theme));
-        response.articles().stream()
-                .filter(article -> article.title() != null && article.url() != null)
-                .limit(5)
+        newArticles.stream()
                 .map(article -> BotCommand.sendMessage(request.chatId(), formatArticle(article)))
                 .forEach(commands::add);
 

@@ -26,7 +26,10 @@ public class VacancySearchMessageService {
 
         var user = userService.findByChatId(request.chatId());
         if (user == null || user.getProfession() == null || user.getProfession().isBlank()) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Сначала заполните анкету командой /my_info"));
+            return BotResponse.of(BotCommand.sendMessage(
+                    request.chatId(),
+                    "\u0421\u043d\u0430\u0447\u0430\u043b\u0430 \u0437\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u0430\u043d\u043a\u0435\u0442\u0443 \u043a\u043e\u043c\u0430\u043d\u0434\u043e\u0439 /my_info"
+            ));
         }
 
         List<Vacancy> vacancies;
@@ -35,11 +38,14 @@ public class VacancySearchMessageService {
         } catch (RestClientException e) {
             return BotResponse.of(BotCommand.sendMessage(
                     request.chatId(),
-                    "Не удалось получить вакансии от HH. Попробуйте чуть позже."
+                    "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0432\u0430\u043a\u0430\u043d\u0441\u0438\u0438 \u043e\u0442 HH. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0447\u0443\u0442\u044c \u043f\u043e\u0437\u0436\u0435."
             ));
         }
         if (vacancies.isEmpty()) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "По вашей профессии ничего не найдено"));
+            return BotResponse.of(BotCommand.sendMessage(
+                    request.chatId(),
+                    "\u041f\u043e \u0432\u0430\u0448\u0435\u0439 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u0438 \u043d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e"
+            ));
         }
 
         List<BotCommand> commands = new ArrayList<>();
@@ -62,8 +68,8 @@ public class VacancySearchMessageService {
 
         List<List<BotCommand.InlineButton>> keyboard = List.of(
                 List.of(
-                        new BotCommand.InlineButton("Добавить в избранное", "vacancy:favorite:" + vacancy.getIdVacancy()),
-                        new BotCommand.InlineButton("Пропустить вакансию", "vacancy:hidden:" + vacancy.getIdVacancy())
+                        new BotCommand.InlineButton("\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432 \u0438\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435", "vacancy:favorite:" + vacancy.getIdVacancy()),
+                        new BotCommand.InlineButton("\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0432\u0430\u043a\u0430\u043d\u0441\u0438\u044e", "vacancy:hidden:" + vacancy.getIdVacancy())
                 )
         );
 

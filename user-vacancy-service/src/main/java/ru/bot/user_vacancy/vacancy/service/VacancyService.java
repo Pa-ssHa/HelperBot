@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 import ru.bot.user_vacancy.user.service.UserService;
 import ru.bot.user_vacancy.userVacancy.service.UserVacancyService;
 import ru.bot.user_vacancy.vacancy.domain.Vacancy;
@@ -17,6 +20,8 @@ import java.util.List;
 
 @Service
 public class VacancyService {
+
+    private static final int HH_HTTP_TIMEOUT_MS = 5000;
 
     private final VacancyRepository vacancyRepository;
     private final UserVacancyService userVacancyService;
@@ -35,12 +40,19 @@ public class VacancyService {
         this.userVacancyService = userVacancyService;
         this.userService = userService;
 
-        this.restClient = RestClient.builder()
+        RestClient.Builder builder = RestClient.builder()
                 .baseUrl("https://api.hh.ru")
-                .defaultHeader("User-Agent", "HelperBot/1.0 (pogoreloffpaulus@yandex.ru)")
+                .requestFactory(createRequestFactory())
+                .defaultHeader("User-Agent", "Mozilla/5.0 HelperBot/1.0 (pogoreloffpaulus@yandex.ru)")
+                .defaultHeader("HH-User-Agent", "HelperBot/1.0 (pogoreloffpaulus@yandex.ru)")
                 .defaultHeader("Accept", "application/json")
-                .defaultHeader("Authorization", "Bearer " + hhAccessToken)
-                .build();
+                .defaultHeader(HttpHeaders.ACCEPT_LANGUAGE, "ru-RU,ru;q=0.9,en;q=0.8");
+
+        if (hhAccessToken != null && !hhAccessToken.isBlank()) {
+            builder.defaultHeader("Authorization", "Bearer " + hhAccessToken);
+        }
+
+        this.restClient = builder.build();
     }
 
 
@@ -60,15 +72,7 @@ public class VacancyService {
         while (true) {
 
             try {
-                String response = restClient.get()
-                        .uri(builder -> builder
-                                .path("/vacancies")
-                                .queryParam("per_page", countVacancy)
-                                .queryParam("page", numberPage[0])
-                                .queryParam("text", userService.findByChatId(chatId).getProfession())
-                                .build())
-                        .retrieve()
-                        .body(String.class);
+                String response = requestVacancies(chatId, countVacancy, numberPage[0]);
 
                 ObjectMapper mapper = new ObjectMapper();
 
@@ -132,5 +136,40 @@ public class VacancyService {
         return vacancies;
     }
 
+    private SimpleClientHttpRequestFactory createRequestFactory() {
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        requestFactory.setConnectTimeout(HH_HTTP_TIMEOUT_MS);
+        requestFactory.setReadTimeout(HH_HTTP_TIMEOUT_MS);
+        return requestFactory;
+    }
+
+    private String requestVacancies(Long chatId, int countVacancy, int page) {
+        RestClientException lastException = null;
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                return restClient.get()
+                        .uri(builder -> builder
+                                .path("/vacancies")
+                                .queryParam("per_page", countVacancy)
+                                .queryParam("page", page)
+                                .queryParam("text", userService.findByChatId(chatId).getProfession())
+                                .build())
+                        .retrieve()
+                        .body(String.class);
+            } catch (RestClientException e) {
+                lastException = e;
+                if (attempt == 3) {
+                    throw e;
+                }
+                try {
+                    Thread.sleep(300L * attempt);
+                } catch (InterruptedException interruptedException) {
+                    Thread.currentThread().interrupt();
+                    throw e;
+                }
+            }
+        }
+        throw lastException;
+    }
 
 }
