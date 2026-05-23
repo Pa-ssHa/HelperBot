@@ -1,6 +1,8 @@
 services:
   user-vacancy:
     url: http://user-vacancy-service:8082
+  gateway:
+    url: http://bot-gateway-service:8080
 
 spring:
   datasource:
@@ -16,3 +18,8 @@ newsapi:
   url: https://newsapi.org/v2/everything
   language: ru
   page-size: 10
+
+news:
+  notifications:
+    cron: "0 0 9,20 * * *"
+    zone: Europe/Moscow

@@ -20,6 +20,8 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class VacancyService {
@@ -34,6 +36,7 @@ public class VacancyService {
     private final UserService userService;
     private final RestClient restClient;
     private final ObjectMapper mapper = new ObjectMapper();
+    private final Map<String, String> areaIdByCity = new ConcurrentHashMap<>();
 
     @Autowired
     public VacancyService(
@@ -93,7 +96,7 @@ public class VacancyService {
 
         while (vacancies.size() < limit && page < maxPages) {
             try {
-                String response = requestVacancies(user.getProfession(), pageSize, page, publishedAfter);
+                String response = requestVacancies(user.getProfession(), user.getCity(), user.getDesiredSalary(), pageSize, page, publishedAfter);
                 JsonNode items = mapper.readTree(response).get("items");
 
                 if (items == null || items.isEmpty()) {
@@ -202,8 +205,21 @@ public class VacancyService {
         return requestFactory;
     }
 
-    private String requestVacancies(String profession, int countVacancy, int page, OffsetDateTime publishedAfter) {
+    private String requestVacancies(
+            String profession,
+            String city,
+            Integer salary,
+            int countVacancy,
+            int page,
+            OffsetDateTime publishedAfter
+    ) {
         RestClientException lastException = null;
+
+        String areaId = resolveAreaId(city);
+        String searchText = areaId == null && city != null && !city.isBlank()
+                ? profession + " " + city.trim()
+                : profession;
+
         for (int attempt = 1; attempt <= 3; attempt++) {
             try {
                 return restClient.get()
@@ -211,11 +227,21 @@ public class VacancyService {
                             builder.path("/vacancies")
                                     .queryParam("per_page", countVacancy)
                                     .queryParam("page", page)
-                                    .queryParam("text", profession);
+                                    .queryParam("text", searchText);
+
+                            if (areaId != null) {
+                                builder.queryParam("area", areaId);
+                            }
+
                             if (publishedAfter != null) {
                                 builder.queryParam("date_from", publishedAfter)
                                         .queryParam("order_by", "publication_time");
                             }
+
+                            if (salary != null && salary > 0) {
+                                builder.queryParam("salary", salary);
+                            }
+
                             return builder.build();
                         })
                         .retrieve()
@@ -225,6 +251,7 @@ public class VacancyService {
                 if (attempt == 3) {
                     throw e;
                 }
+
                 try {
                     Thread.sleep(300L * attempt);
                 } catch (InterruptedException interruptedException) {
@@ -233,6 +260,35 @@ public class VacancyService {
                 }
             }
         }
+
         throw lastException;
+    }
+
+    private String resolveAreaId(String city) {
+        if (city == null || city.isBlank()) {
+            return null;
+        }
+
+        String normalizedCity = city.trim().toLowerCase();
+        return areaIdByCity.computeIfAbsent(normalizedCity, key -> {
+            try {
+                String response = restClient.get()
+                        .uri(builder -> builder
+                                .path("/suggests/areas")
+                                .queryParam("text", city.trim())
+                                .build())
+                        .retrieve()
+                        .body(String.class);
+
+                JsonNode items = mapper.readTree(response).path("items");
+                if (items.isArray() && !items.isEmpty()) {
+                    return items.get(0).path("id").asText(null);
+                }
+            } catch (JsonProcessingException | RestClientException ignored) {
+                return null;
+            }
+
+            return null;
+        });
     }
 }

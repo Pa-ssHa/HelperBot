@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bot.news_service.dispatcher.NewsCallbackDispatcher;
 import ru.bot.news_service.dto.BotResponse;
+import ru.bot.news_service.dto.NewsCallbackRequest;
 import ru.bot.news_service.dto.NewsMessageRequest;
 import ru.bot.news_service.service.NewsSearchMessageService;
 
@@ -16,9 +18,15 @@ import ru.bot.news_service.service.NewsSearchMessageService;
 public class NewsMessageRestController {
 
     private final NewsSearchMessageService newsSearchMessageService;
+    private final NewsCallbackDispatcher newsCallbackDispatcher;
 
     @PostMapping("/message")
     public ResponseEntity<BotResponse> handleNewsMessage(@RequestBody NewsMessageRequest request) {
         return ResponseEntity.ok(newsSearchMessageService.handle(request));
+    }
+
+    @PostMapping("/callback")
+    public BotResponse handleCallback(@RequestBody NewsCallbackRequest request) {
+        return newsCallbackDispatcher.dispatch(request);
     }
 }

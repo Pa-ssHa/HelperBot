@@ -20,7 +20,9 @@ public class VacancySearchMessageService {
     private final UserService userService;
 
     public BotResponse search(SearchVacancyRequest request) {
-        if (request.text() == null || !"/searchVacancy".equalsIgnoreCase(request.text().trim())) {
+        if (request.text() == null
+            || (!"/searchVacancy".equalsIgnoreCase(request.text().trim())
+                && !"🔎 Найти вакансии".equalsIgnoreCase(request.text().trim()))) {
             return BotResponse.empty();
         }
 

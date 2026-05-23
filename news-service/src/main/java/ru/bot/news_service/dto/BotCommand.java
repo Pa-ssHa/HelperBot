@@ -26,4 +26,22 @@ public record BotCommand(
 
     public record InlineButton(String text, String callbackData) {
     }
+
+    public static BotCommand sendMessage(
+            Long chatId,
+            String text,
+            String parseMode,
+            List<List<InlineButton>> inlineKeyboard
+    ) {
+        return new BotCommand(
+                BotCommandType.SEND_MESSAGE,
+                chatId,
+                text,
+                null,
+                null,
+                parseMode,
+                inlineKeyboard,
+                null
+        );
+    }
 }

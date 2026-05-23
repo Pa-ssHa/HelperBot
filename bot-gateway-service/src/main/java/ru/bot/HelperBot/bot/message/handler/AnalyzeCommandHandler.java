@@ -12,7 +12,10 @@ public class AnalyzeCommandHandler implements MessageHandler {
 
     @Override
     public boolean canHandle(Message message) {
-        return message.getText().trim().equalsIgnoreCase("/analyse");
+        String text = message.getText().trim();
+
+        return "/analyse".equalsIgnoreCase(text)
+               || "📄 Анализ резюме".equalsIgnoreCase(text);
     }
 
     @Override

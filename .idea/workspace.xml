@@ -5,27 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe92c44-15d6-4a4e-a724-73a3717c9bb4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/TelegramBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/dispetcher/CallbackDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/dispetcher/CallbackDispatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/AnalyzeCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/AnalyzeCommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/StartCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/StartCommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/SearchNewsMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/SearchNewsMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/SearchVacancyMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/bot/message/handler/SearchVacancyMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/news/client/NewsClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/news/client/NewsClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/userVacancy/message/MessageInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bot-gateway-service/src/main/java/ru/bot/HelperBot/userVacancy/message/MessageInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/NewsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/NewsServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/controller/NewsMessageRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/controller/NewsMessageRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/dto/BotCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/dto/BotCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/handler/SearchNewsMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/java/ru/bot/news_service/handler/SearchNewsMessageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/UserVacancyServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/UserVacancyServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/UserSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/UserSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/UserState.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/UserState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/domain/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/facade/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/facade/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/AgeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/AgeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/CityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/CityHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/FirstNameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/FirstNameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/LastNameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/LastNameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/src/main/resources/application-docker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/StartHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/StartHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/VacancyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/user/handler/VacancyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/domain/Vacancy.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/domain/Vacancy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/service/VacancySearchMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/service/VacancySearchMessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/service/VacancyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/java/ru/bot/user_vacancy/vacancy/service/VacancyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-vacancy-service/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-vacancy-service/src/main/resources/application-docker.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +35,8 @@
       <list>
         <option value="package-info" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
         <option value="Record" />
       </list>
     </option>
@@ -292,7 +287,7 @@
       <workItem from="1778504402434" duration="123000" />
       <workItem from="1778504531894" duration="49505000" />
       <workItem from="1779117910088" duration="7103000" />
-      <workItem from="1779137317942" duration="13633000" />
+      <workItem from="1779137317942" duration="27049000" />
     </task>
     <servers />
   </component>

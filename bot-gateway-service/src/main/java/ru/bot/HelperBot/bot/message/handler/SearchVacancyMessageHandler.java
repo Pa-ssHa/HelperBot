@@ -17,7 +17,10 @@ public class SearchVacancyMessageHandler implements MessageHandler {
 
     @Override
     public boolean canHandle(Message message) {
-        return message.getText().trim().equalsIgnoreCase("/searchVacancy");
+        String text = message.getText().trim();
+
+        return "/searchVacancy".equalsIgnoreCase(text)
+               || "🔎 Найти вакансии".equalsIgnoreCase(text);
     }
 
     @Override

@@ -12,7 +12,10 @@ public class StartHandler implements PersonStateHandler {
 
     @Override
     public boolean canHandle(UserMessageRequest request, UserSession userSession) {
-        return request.text().trim().equalsIgnoreCase("/my_info")
+        String text = request.text().trim();
+
+        return ("/my_info".equalsIgnoreCase(text)
+               || "👤 Моя анкета".equalsIgnoreCase(text))
                 && (userSession.getUserState() == UserState.START
                 || userSession.getUserState() == UserState.FINISH);
     }

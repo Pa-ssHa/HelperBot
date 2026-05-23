@@ -9,24 +9,31 @@ import ru.bot.HelperBot.news.client.NewsClient;
 import ru.bot.HelperBot.news.dto.NewsMessageRequest;
 
 @Component
-@Order(35)
+@Order(20)
 @RequiredArgsConstructor
-public class SearchNewsMessageHandler implements MessageHandler {
+public class NewsMessageHandler implements MessageHandler {
 
     private final NewsClient newsClient;
 
     @Override
     public boolean canHandle(Message message) {
+        if (message.getText() == null) {
+            return false;
+        }
+
         String text = message.getText().trim();
 
-        return "/news".equalsIgnoreCase(text)
-               || "📰 Новости".equalsIgnoreCase(text)
-               || "📰 Показать новости".equalsIgnoreCase(text);
+        return "/sub_news".equalsIgnoreCase(text)
+               || "🔔 Подписка".equalsIgnoreCase(text)
+               || "📰 Подписка на новости".equalsIgnoreCase(text);
     }
 
     @Override
     public BotResponse handle(Message message) {
-        Long userId = message.getFrom() == null ? null : message.getFrom().getId();
-        return newsClient.handleNewsMessage(new NewsMessageRequest(message.getChatId(), userId, message.getText()));
+        return newsClient.handleMessage(new NewsMessageRequest(
+                message.getChatId(),
+                message.getFrom().getId(),
+                message.getText()
+        ));
     }
 }

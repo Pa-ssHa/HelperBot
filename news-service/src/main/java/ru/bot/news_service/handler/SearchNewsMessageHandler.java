@@ -2,110 +2,33 @@ package ru.bot.news_service.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.bot.news_service.client.NewsApiClient;
 import ru.bot.news_service.client.UserDetailsClient;
-import ru.bot.news_service.dto.BotCommand;
 import ru.bot.news_service.dto.BotResponse;
-import ru.bot.news_service.dto.NewsApiResponse;
-import ru.bot.news_service.dto.NewsArticleDto;
 import ru.bot.news_service.dto.NewsMessageRequest;
-import ru.bot.news_service.service.NewsHistoryService;
-
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import ru.bot.news_service.service.NewsDeliveryService;
 
 @Component
 @RequiredArgsConstructor
 public class SearchNewsMessageHandler implements NewsMessageHandler {
 
-    private static final String NEWS_COMMAND = "/sub_news";
-    private static final int RESPONSE_ARTICLES_LIMIT = 2;
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private static final String NEWS_COMMAND = "/news";
+    private static final String NEWS_COMMAND_STRING = "📰 Показать новости";
+    private static final String NEWS_BUTTON = "📰 Новости";
 
     private final UserDetailsClient userDetailsClient;
-    private final NewsApiClient newsApiClient;
-    private final NewsHistoryService newsHistoryService;
+    private final NewsDeliveryService newsDeliveryService;
 
     @Override
     public boolean canHandle(NewsMessageRequest request) {
-        return request.text() != null && NEWS_COMMAND.equalsIgnoreCase(request.text().trim());
+        return request.text() != null
+               && (NEWS_COMMAND.equalsIgnoreCase(request.text().trim())
+                   || NEWS_COMMAND_STRING.equalsIgnoreCase(request.text().trim())
+                   || NEWS_BUTTON.equalsIgnoreCase(request.text().trim()));
     }
 
     @Override
     public BotResponse handle(NewsMessageRequest request) {
         String theme = userDetailsClient.findNewsTheme(request.chatId());
-        if (theme == null || theme.isBlank()) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Сначала заполните профессию через /my_info."));
-        }
-
-        NewsApiResponse response = newsApiClient.search(theme);
-        if (response == null) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Не удалось получить новости. Попробуйте позже."));
-        }
-
-        if (!"ok".equalsIgnoreCase(response.status())) {
-            String message = response.message() == null ? "News API вернул ошибку" : response.message();
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), message));
-        }
-
-        if (response.articles() == null || response.articles().isEmpty()) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "По вашей профессии новости не найдены."));
-        }
-
-        Set<String> viewedNewsIds = newsHistoryService.findViewedNewsIds(request.chatId());
-        List<NewsArticleDto> newArticles = response.articles().stream()
-                .filter(article -> article.title() != null && article.url() != null)
-                .filter(article -> !viewedNewsIds.contains(newsHistoryService.articleId(article)))
-                .limit(RESPONSE_ARTICLES_LIMIT)
-                .toList();
-
-        if (newArticles.isEmpty()) {
-            return BotResponse.of(BotCommand.sendMessage(request.chatId(), "Новых новостей по вашей профессии пока нет."));
-        }
-
-        newsHistoryService.saveViewed(request.chatId(), theme, newArticles);
-
-        List<BotCommand> commands = new ArrayList<>();
-        commands.add(BotCommand.sendMessage(
-                request.chatId(),
-                "Новости по теме: " + theme + "\nПоказываю " + newArticles.size() + " " + materialWord(newArticles.size()) + ", которые вы ещё не видели."
-        ));
-        newArticles.stream()
-                .map(article -> BotCommand.sendMessage(request.chatId(), formatArticle(article)))
-                .forEach(commands::add);
-
-        return new BotResponse(commands);
-    }
-
-    private String formatArticle(NewsArticleDto article) {
-        String source = article.source() == null || article.source().name() == null
-                ? "Источник не указан"
-                : article.source().name();
-        String publishedAt = article.publishedAt() == null
-                ? "Дата не указана"
-                : article.publishedAt().format(DATE_FORMATTER);
-        String description = article.description() == null || article.description().isBlank()
-                ? ""
-                : "\n\n" + trimDescription(article.description());
-
-        return article.title()
-                + "\n\nИсточник: " + source
-                + "\nОпубликовано: " + publishedAt
-                + description
-                + "\n\nЧитать: " + article.url();
-    }
-
-    private String trimDescription(String description) {
-        String normalized = description.trim();
-        if (normalized.length() <= 300) {
-            return normalized;
-        }
-        return normalized.substring(0, 297).trim() + "...";
-    }
-
-    private String materialWord(int count) {
-        return count == 1 ? "материал" : "материала";
+        return newsDeliveryService.buildNewsResponse(request.chatId(), theme, false);
     }
 }
