@@ -63,4 +63,11 @@ public class UserVacancyService {
         }
         return result;
     }
+
+    public List<Long> findFavoriteVacancyIds(Long chatId) {
+        return userVacancyRepository.findAllByUserIdAndIsFavoriteTrueAndIsHiddenFalse(chatId)
+                .stream()
+                .map(UserVacancy::getVacancyId)
+                .toList();
+    }
 }

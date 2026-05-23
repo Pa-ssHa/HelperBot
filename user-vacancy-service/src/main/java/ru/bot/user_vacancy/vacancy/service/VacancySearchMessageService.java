@@ -58,6 +58,30 @@ public class VacancySearchMessageService {
         return new BotResponse(commands);
     }
 
+    public BotResponse favorites(SearchVacancyRequest request) {
+        if (request.text() == null
+            || (!"/favorites".equalsIgnoreCase(request.text().trim())
+                && !"⭐ Избранное".equalsIgnoreCase(request.text().trim()))) {
+            return BotResponse.empty();
+        }
+
+        List<Vacancy> vacancies = vacancyService.findFavoriteVacancies(request.chatId());
+        if (vacancies.isEmpty()) {
+            return BotResponse.of(BotCommand.sendMessage(
+                    request.chatId(),
+                    "В избранном пока пусто. Нажмите «В избранное» под подходящей вакансией, и она появится здесь."
+            ));
+        }
+
+        List<BotCommand> commands = new ArrayList<>();
+        commands.add(BotCommand.sendMessage(request.chatId(), "⭐ Ваши избранные вакансии:"));
+        vacancies.stream()
+                .map(vacancy -> toCommand(request.chatId(), vacancy))
+                .forEach(commands::add);
+
+        return new BotResponse(commands);
+    }
+
     public BotCommand toCommand(Long chatId, Vacancy vacancy) {
         String text = String.format(
                 "*%s*%n%nКомпания: %s%nГород: %s%nЗарплата: %s%n%n%s",

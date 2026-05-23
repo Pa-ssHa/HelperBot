@@ -79,6 +79,15 @@ public class VacancyService {
         userVacancyService.save(vacancies, chatId);
     }
 
+    public List<Vacancy> findFavoriteVacancies(Long chatId) {
+        List<Long> favoriteIds = userVacancyService.findFavoriteVacancyIds(chatId);
+        if (favoriteIds.isEmpty()) {
+            return List.of();
+        }
+
+        return vacancyRepository.findAllByIdVacancyIn(favoriteIds);
+    }
+
     private List<Vacancy> collectVacancies(
             Users user,
             OffsetDateTime publishedAfter,

@@ -10,6 +10,7 @@ public class MessageInfoService {
     public List<List<String>> mainMenu() {
         return List.of(
                 List.of("👤 Моя анкета", "🔎 Найти вакансии"),
+                List.of("⭐ Избранное"),
                 List.of("📰 Новости", "🔔 Подписка"),
                 List.of("📄 Анализ резюме")
         );

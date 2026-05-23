@@ -40,6 +40,15 @@ public class BotUserVacancyServiceClient {
                 .block();
     }
 
+    public BotResponse favoriteVacancies(SearchVacancyRequest request) {
+        return webClient.post()
+                .uri("/internal/v1/vacancy/favorites")
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(BotResponse.class)
+                .block();
+    }
+
     public BotResponse handleUserMessage(UserMessageRequest request) {
         return webClient.post()
                 .uri("/internal/v1/user/message")

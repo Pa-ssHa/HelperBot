@@ -21,4 +21,9 @@ public class VacancySearchRestController {
     public ResponseEntity<BotResponse> search(@RequestBody SearchVacancyRequest request) {
         return ResponseEntity.ok(vacancySearchMessageService.search(request));
     }
+
+    @PostMapping("/favorites")
+    public ResponseEntity<BotResponse> favorites(@RequestBody SearchVacancyRequest request) {
+        return ResponseEntity.ok(vacancySearchMessageService.favorites(request));
+    }
 }

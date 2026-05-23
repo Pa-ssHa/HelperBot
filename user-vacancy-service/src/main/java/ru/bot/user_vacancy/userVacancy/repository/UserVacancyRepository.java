@@ -13,4 +13,6 @@ public interface UserVacancyRepository extends JpaRepository<UserVacancy, UserVa
 
     @Query("SELECT uv FROM UserVacancy uv WHERE uv.userId = ?1")
     List<UserVacancy> findByUser_id(Long chatId);
+
+    List<UserVacancy> findAllByUserIdAndIsFavoriteTrueAndIsHiddenFalse(Long chatId);
 }

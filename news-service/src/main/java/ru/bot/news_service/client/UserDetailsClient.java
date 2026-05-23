@@ -1,7 +1,6 @@
 package ru.bot.news_service.client;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -16,7 +15,6 @@ public class UserDetailsClient {
                 .build();
     }
 
-    @Cacheable(value = "userThemes", key = "#chatId")
     public String findNewsTheme(Long chatId) {
         return restClient.get()
                 .uri("/internal/v1/user/news-theme/{id}", chatId)
